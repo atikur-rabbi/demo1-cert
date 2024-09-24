@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Color Picker</title>
+    <style>
+        #color-picker {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+
+        #color-display {
+            width: 100px;
+            height: 30px;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="color-picker"></div>
+    <div id="color-display">#000000</div>
+
+    <script>
+        const colorPicker = document.getElementById('color-picker');
+        const colorDisplay = document.getElementById('color-display');
+
+        colorPicker.addEventListener('click', (event) => {
+            const x = event.offsetX;
+            const y = event.offsetY;
+            const red = Math.floor(x / colorPicker.offsetWidth * 255);
+            const green = Math.floor(y / colorPicker.offsetHeight * 255);
+            const blue = 255 - red - green;
+            const color = `#${red.toString(16).padStart(2, '0')}${green.toString(16).padStart(2, '0')}${blue.toString(16).padStart(2, '0')}`;
+            colorDisplay.style.backgroundColor = color;
+            colorDisplay.textContent = color;
+        });
+    </script>
+</body>
+</html>
